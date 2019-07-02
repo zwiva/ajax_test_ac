@@ -2,26 +2,49 @@
 
 <h1>Companies</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<%= form_with(model: @company) do |form| %>
 
-  <tbody>
-    <% @companies.each do |company| %>
-      <tr>
-        <td><%= company.name %></td>
-        <td><%= link_to 'Show', company %></td>
-        <td><%= link_to 'Edit', edit_company_path(company) %></td>
-        <td><%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<table>
+ <thead>
+   <tr>
+     <th>Content</th>
+     <th colspan="3"></th>
+   </tr>
+ </thead>
+
+ <tbody id="companies">
+   <% @companies.each do |company| %>
+     <tr id="<%= company.id%>"> <%# agrega id para usarlo con una query%>
+       <td><%= company.name %></td>
+       <td><%= link_to 'Show', company %></td>
+       <td><%= link_to 'Edit', edit_company_path(company) %></td>
+       <td><%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' }, remote: true %></td>
+     </tr>
+   <% end %>
+ </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Company', new_company_path %>
+<div id="modal-edit" class="modal fade" tabindex="-1" role="dialog">
+ <div class="modal-dialog" role="document">
+   <div class="modal-content">
+     <div class="modal-header">
+       <h2 class="modal-title">Modal</h2>
+       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+         <span aria-hidden="true">&times;</span>
+       </button>
+     </div>
+     <div class="modal-body">
+     </div>
+   </div>
+ </div>
+</div>
