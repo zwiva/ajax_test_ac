@@ -1,6 +1,5 @@
 class ClaimsController < ApplicationController
-
-    def create
+        def create
 
         @claim = Claim.new(
             content: params[:claim][:content],

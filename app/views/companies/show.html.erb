@@ -10,7 +10,7 @@
 
 <%= form_with(model: [@company, Claim.new]) do |f| %>
   <%= f.text_area :content, placeholder: 'Escribe tu reclamo aquí...', id: :text %>
-  <%= f.submit 'Comentar'%>
+  <%= f.submit 'Comentar', class:''%>
 <% end %>
 
 <div id="claims">
@@ -18,7 +18,6 @@
     <%@claims.each do |claim| %>
       <% if (@company.id == claim.company_id) %>
       <li><%= claim.created_at %>  <%= claim.content %></li>
-      
       <% end %>
     <% end %>
   </ol>
