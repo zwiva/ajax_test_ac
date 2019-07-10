@@ -5,7 +5,7 @@ class CompaniesController < ApplicationController
   # GET /companies
   # GET /companies.json
   def index
-    @companies = Company.all
+    @companies = Company.order(created_at: :desc)
     @company = Company.new
   end
 
@@ -24,7 +24,7 @@ class CompaniesController < ApplicationController
   def edit
     @company = Company.find(params[:id])
     respond_to do |format|
-      format.js  
+      format.js {}
       end
   end
 
@@ -53,7 +53,7 @@ class CompaniesController < ApplicationController
   def destroy
     @company.destroy
     respond_to do |format|
-    format.js
+    format.js {}
     end
   end
 

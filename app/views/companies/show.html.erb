@@ -10,10 +10,10 @@
 
 <%= form_with(model: [@company, Claim.new]) do |f| %>
   <%= f.text_area :content, placeholder: 'Escribe tu reclamo aquí...', id: :text %>
-  <%= f.submit 'Comentar', class:''%>
+  <%= f.submit 'Comentar'%>
 <% end %>
 
-<div id="claims">
+<div id="company_claims">
   <ol>
     <%@claims.each do |claim| %>
       <% if (@company.id == claim.company_id) %>
