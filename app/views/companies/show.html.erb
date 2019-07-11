@@ -1,24 +1,21 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @company.name %>
-</p>
+<h4> <strong>Name:</strong> <%= @company.name %></h4>
 
 <%# link_to 'Edit', edit_company_path(@company) %> 
 <%# link_to 'Back', companies_path %>
 
-<%= form_with(model: [@company, Claim.new]) do |f| %>
+<%= form_with(model: [@company, @claim]) do |f| %>
   <%= f.text_area :content, placeholder: 'Escribe tu reclamo aquí...', id: :text %>
-  <%= f.submit 'Comentar'%>
+  <%= f.submit 'Comentar' %>
 <% end %>
 
-<div id="company_claims">
-  <ol>
+<div id="company_claim">
+  <ul>
     <%@claims.each do |claim| %>
       <% if (@company.id == claim.company_id) %>
-      <li><%= claim.created_at %>  <%= claim.content %></li>
+      <li><strong> <%= claim.created_at.to_date%> <%= claim.created_at.utc.strftime("%H:%M:%S")%></strong> <%= claim.content %></li>
       <% end %>
     <% end %>
-  </ol>
+  </ul>
 </div>

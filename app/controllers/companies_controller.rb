@@ -12,7 +12,8 @@ class CompaniesController < ApplicationController
   # GET /companies/1
   # GET /companies/1.json
   def show
-    @claims = Claim.all.order('created_at DESC')
+    @claims = @company.claims.order(created_at: :desc)
+    @claim = Claim.new
   end
 
   # GET /companies/new
